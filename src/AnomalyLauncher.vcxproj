@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C9A4A6F3-2014-49E4-A32D-086ADAEA55E6}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ImGui_D3DWindow_Template</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>AnomalyLauncher</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>D:\VSProjects\Projects_latest\[2new_anomaly_launcher\new_ver\src\DirectX;D:\VSProjects\Projects_latest\[2new_anomaly_launcher\new_ver\src\lib\curl\builds\libcurl-vc-x86-release-static-ipv6-sspi-schannel\lib;$(LibraryPath);$(DXSDK_DIR)\Lib\x86;D:\[VSProjects\[2new_anomaly_launcher\new_ver\src\lib\curl\builds\libcurl-vc-x86-release-static-ipv6-sspi-schannel\lib</LibraryPath>
+    <IncludePath>$(IncludePath);$(DXSDK_DIR)\Include;D:\[VSProjects\[2new_anomaly_launcher\new_ver\src\include\curl</IncludePath>
+    <OutDir>E:\AnomalyPZ</OutDir>
+    <ExternalIncludePath>D:\VSProjects\Projects_latest\[2new_anomaly_launcher\new_ver\src\lib\curl\builds\libcurl-vc-x86-release-static-ipv6-sspi-schannel\include;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>DirectX;CFileDownloader;Network;imGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <DisableSpecificWarnings>4995;4244;4996;4482;4409;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>main.h</PrecompiledHeaderFile>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>secur32.lib;msvcrt.lib;Normaliz.lib;ws2_32.lib;Crypt32.lib;Wldap32.lib;libcurl_a.lib;d3dx9.lib;Wsock32.lib;Wininet.lib;wbemuuid.lib;Ws2_32.lib;d3d9.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <EnableUAC>true</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="bass.h" />
+    <ClInclude Include="bender_image.h" />
+    <ClInclude Include="CExceptionHandler.hpp" />
+    <ClInclude Include="CFileDownloader\FileDownloader.h" />
+    <ClInclude Include="cmds_funcs.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="ConfigManager.h" />
+    <ClInclude Include="CTaskManager.h" />
+    <ClInclude Include="FileListGenerator.h" />
+    <ClInclude Include="ini_parser.h" />
+    <ClInclude Include="LauncherConfig.h" />
+    <ClInclude Include="listparser.hpp" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="FileSystemManager.h" />
+    <ClInclude Include="Fonts\IconFontAwesome5.h" />
+    <ClInclude Include="Fonts\imgui_fonts.h" />
+    <ClInclude Include="Fonts\itsmyfontforgocnet.h" />
+    <ClInclude Include="gui.h" />
+    <ClInclude Include="ImColor.h" />
+    <ClInclude Include="ImFuncs.h" />
+    <ClInclude Include="imGui\imconfig.h" />
+    <ClInclude Include="imGui\imgui.h" />
+    <ClInclude Include="imGui\imgui_impl_dx9.h" />
+    <ClInclude Include="imGui\imgui_impl_win32.h" />
+    <ClInclude Include="imGui\imgui_internal.h" />
+    <ClInclude Include="imGui\imgui_offset_rect.h" />
+    <ClInclude Include="imGui\imgui_stdlib.h" />
+    <ClInclude Include="imGui\imgui_toggle.h" />
+    <ClInclude Include="imGui\imgui_toggle_math.h" />
+    <ClInclude Include="imGui\imgui_toggle_palette.h" />
+    <ClInclude Include="imGui\imgui_toggle_presets.h" />
+    <ClInclude Include="imGui\imgui_toggle_renderer.h" />
+    <ClInclude Include="imGui\imstb_rectpack.h" />
+    <ClInclude Include="imGui\imstb_textedit.h" />
+    <ClInclude Include="imGui\imstb_truetype.h" />
+    <ClInclude Include="lists.h" />
+    <ClInclude Include="Lupdate.h" />
+    <ClInclude Include="L_funcs.h" />
+    <ClInclude Include="LParams.h" />
+    <ClInclude Include="L_ModPack_Helper.h" />
+    <ClInclude Include="mainincludes.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Menu_ThemeEditor.h" />
+    <ClInclude Include="misc_funcs.h" />
+    <ClInclude Include="necessarylibs.h" />
+    <ClInclude Include="Network\HttpClient.h" />
+    <ClInclude Include="Network\HTTPWebPageScraper.h" />
+    <ClInclude Include="Network\wininet_defs.h" />
+    <ClInclude Include="L_Main.h" />
+    <ClInclude Include="math_stuff.h" />
+    <ClInclude Include="Menu_Functions.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="RenderConfigEditor.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="scanner.h" />
+    <ClInclude Include="structs.h" />
+    <ClInclude Include="Systeminfo.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="ThreadWrapper.hpp" />
+    <ClInclude Include="TrayMenu.h" />
+    <ClInclude Include="UrlImporter.h" />
+    <ClInclude Include="ZipExtractor.hpp" />
+    <ClInclude Include="ZipPacker.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CFileDownloader\FileDownloader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cmds.cpp" />
+    <ClCompile Include="cmds_funcs.cpp" />
+    <ClCompile Include="config.cpp" />
+    <ClCompile Include="ConfigManager.cpp" />
+    <ClCompile Include="console.cpp" />
+    <ClCompile Include="createuserltx.cpp" />
+    <ClCompile Include="CTaskManager.cpp" />
+    <ClCompile Include="D3DImageImGui.cpp" />
+    <ClCompile Include="FileListGenerator.cpp" />
+    <ClCompile Include="FileSystemManager.cpp" />
+    <ClCompile Include="gui.cpp" />
+    <ClCompile Include="ImFuncs.cpp" />
+    <ClCompile Include="imGui\imgui.cpp" />
+    <ClCompile Include="imGui\imgui_demo.cpp" />
+    <ClCompile Include="imGui\imgui_draw.cpp" />
+    <ClCompile Include="imGui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="imGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imGui\imgui_stdlib.cpp" />
+    <ClCompile Include="imGui\imgui_tables.cpp" />
+    <ClCompile Include="imGui\imgui_toggle.cpp" />
+    <ClCompile Include="imGui\imgui_toggle_palette.cpp" />
+    <ClCompile Include="imGui\imgui_toggle_presets.cpp" />
+    <ClCompile Include="imGui\imgui_toggle_renderer.cpp" />
+    <ClCompile Include="imGui\imgui_widgets.cpp" />
+    <ClCompile Include="LauncherConfig.cpp" />
+    <ClCompile Include="lists.cpp" />
+    <ClCompile Include="Lupdate.cpp" />
+    <ClCompile Include="L_funcs.cpp" />
+    <ClCompile Include="LParams.cpp" />
+    <ClCompile Include="L_ModPack_Helper.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="Menu_RCredits.cpp" />
+    <ClCompile Include="Menu_RSettings.cpp" />
+    <ClCompile Include="Menu_Radio_Control.cpp" />
+    <ClCompile Include="Menu_RDebug.cpp" />
+    <ClCompile Include="Menu_RGeneral.cpp" />
+    <ClCompile Include="Menu_RHelper.cpp" />
+    <ClCompile Include="Menu_RInfo.cpp" />
+    <ClCompile Include="Menu_RLists.cpp" />
+    <ClCompile Include="Menu_RModules.cpp" />
+    <ClCompile Include="Menu_ROptimization.cpp" />
+    <ClCompile Include="Menu_RSborkaBE.cpp" />
+    <ClCompile Include="Menu_RScanner.cpp" />
+    <ClCompile Include="Menu_RUpdates.cpp" />
+    <ClCompile Include="Menu_ThemeEditor.cpp" />
+    <ClCompile Include="misc_funcs.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Network\HttpClient.cpp" />
+    <ClCompile Include="Network\HTTPWebPageScraper.cpp" />
+    <ClCompile Include="PatchModOrganizer.cpp" />
+    <ClCompile Include="L_Main.cpp" />
+    <ClCompile Include="math_stuff.cpp" />
+    <ClCompile Include="Menu_Functions.cpp" />
+    <ClCompile Include="main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Menu_RTasks.cpp" />
+    <ClCompile Include="RenderConfigEditor.cpp" />
+    <ClCompile Include="scanner.cpp" />
+    <ClCompile Include="Systeminfo.cpp" />
+    <ClCompile Include="ThreadWrapper.cpp" />
+    <ClCompile Include="Tasks.cpp" />
+    <ClCompile Include="TrayMenu.cpp" />
+    <ClCompile Include="UrlImporter.cpp" />
+    <ClCompile Include="ZipExtractor.cpp" />
+    <ClCompile Include="ZipPacker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\AnomalyPZ\AnomalyLauncher\7za.exe" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

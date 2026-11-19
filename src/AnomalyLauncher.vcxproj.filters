@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D3DImageImGui.cpp">
+      <Filter>Engine\background</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_demo.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_draw.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_impl_dx9.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_impl_win32.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_stdlib.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_tables.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_toggle.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_toggle_palette.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_toggle_presets.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_toggle_renderer.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imGui\imgui_widgets.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\HttpClient.cpp">
+      <Filter>Engine\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\HTTPWebPageScraper.cpp">
+      <Filter>Engine\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="CFileDownloader\FileDownloader.cpp">
+      <Filter>Engine\Network\CFileDownloader</Filter>
+    </ClCompile>
+    <ClCompile Include="Systeminfo.cpp">
+      <Filter>Engine\System</Filter>
+    </ClCompile>
+    <ClCompile Include="cmds.cpp">
+      <Filter>commands</Filter>
+    </ClCompile>
+    <ClCompile Include="cmds_funcs.cpp">
+      <Filter>commands</Filter>
+    </ClCompile>
+    <ClCompile Include="gui.cpp">
+      <Filter>Engine\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="math_stuff.cpp">
+      <Filter>Engine\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="misc_funcs.cpp">
+      <Filter>Engine\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="L_funcs.cpp">
+      <Filter>Funcs</Filter>
+    </ClCompile>
+    <ClCompile Include="createuserltx.cpp">
+      <Filter>Funcs</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>Engine\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_Radio_Control.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RDebug.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RGeneral.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RHelper.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RInfo.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RLists.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RModules.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_ROptimization.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RSborkaBE.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RScanner.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RUpdates.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="PatchModOrganizer.cpp">
+      <Filter>Funcs</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ImFuncs.cpp">
+      <Filter>Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="console.cpp">
+      <Filter>Engine\console</Filter>
+    </ClCompile>
+    <ClCompile Include="LParams.cpp">
+      <Filter>Funcs</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_Functions.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="L_Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RSettings.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CTaskManager.cpp">
+      <Filter>TaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystemManager.cpp">
+      <Filter>Engine\FileSystemManager</Filter>
+    </ClCompile>
+    <ClCompile Include="lists.cpp">
+      <Filter>Lists</Filter>
+    </ClCompile>
+    <ClCompile Include="scanner.cpp">
+      <Filter>Scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Lupdate.cpp">
+      <Filter>Updater</Filter>
+    </ClCompile>
+    <ClCompile Include="ZipExtractor.cpp">
+      <Filter>ZipExtractor</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadWrapper.cpp">
+      <Filter>ThreadWrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Tasks.cpp">
+      <Filter>TaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RTasks.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_ThemeEditor.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="L_ModPack_Helper.cpp">
+      <Filter>Funcs</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_RCredits.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="LauncherConfig.cpp">
+      <Filter>FileList_Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigManager.cpp">
+      <Filter>FileList_Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="FileListGenerator.cpp">
+      <Filter>FileList_Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderConfigEditor.cpp">
+      <Filter>FileList_Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="UrlImporter.cpp">
+      <Filter>FileList_Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="ZipPacker.cpp">
+      <Filter>ZipPacker</Filter>
+    </ClCompile>
+    <ClCompile Include="TrayMenu.cpp">
+      <Filter>TrayMenu</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts\itsmyfontforgocnet.h">
+      <Filter>Engine\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts\imgui_fonts.h">
+      <Filter>Engine\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts\IconFontAwesome5.h">
+      <Filter>Engine\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="bender_image.h">
+      <Filter>Engine\background</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imconfig.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_impl_dx9.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_impl_win32.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_internal.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_stdlib.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_toggle.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_toggle_math.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_toggle_palette.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_toggle_presets.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_toggle_renderer.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imstb_rectpack.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imstb_textedit.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imstb_truetype.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imGui\imgui_offset_rect.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\HttpClient.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\HTTPWebPageScraper.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\wininet_defs.h">
+      <Filter>Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="CFileDownloader\FileDownloader.h">
+      <Filter>Engine\Network\CFileDownloader</Filter>
+    </ClInclude>
+    <ClInclude Include="bass.h">
+      <Filter>Engine\audiolib</Filter>
+    </ClInclude>
+    <ClInclude Include="Systeminfo.h">
+      <Filter>Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="cmds_funcs.h">
+      <Filter>commands</Filter>
+    </ClInclude>
+    <ClInclude Include="gui.h">
+      <Filter>Engine\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="math_stuff.h">
+      <Filter>Engine\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="misc_funcs.h">
+      <Filter>Engine\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="L_funcs.h">
+      <Filter>Funcs</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>Engine\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ImFuncs.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImColor.h">
+      <Filter>Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Engine\console</Filter>
+    </ClInclude>
+    <ClInclude Include="LParams.h">
+      <Filter>Funcs</Filter>
+    </ClInclude>
+    <ClInclude Include="necessarylibs.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="mainincludes.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu_Functions.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="L_Main.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="CTaskManager.h">
+      <Filter>TaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystemManager.h">
+      <Filter>Engine\FileSystemManager</Filter>
+    </ClInclude>
+    <ClInclude Include="lists.h">
+      <Filter>Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="scanner.h">
+      <Filter>Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="CExceptionHandler.hpp">
+      <Filter>Engine\ExceptionHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Lupdate.h">
+      <Filter>Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="ZipExtractor.hpp">
+      <Filter>ZipExtractor</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadWrapper.hpp">
+      <Filter>ThreadWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu_ThemeEditor.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="L_ModPack_Helper.h">
+      <Filter>Funcs</Filter>
+    </ClInclude>
+    <ClInclude Include="LauncherConfig.h">
+      <Filter>FileList_Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigManager.h">
+      <Filter>FileList_Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="FileListGenerator.h">
+      <Filter>FileList_Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderConfigEditor.h">
+      <Filter>FileList_Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="UrlImporter.h">
+      <Filter>FileList_Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="ZipPacker.h">
+      <Filter>ZipPacker</Filter>
+    </ClInclude>
+    <ClInclude Include="ini_parser.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="listparser.hpp">
+      <Filter>Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="TrayMenu.h">
+      <Filter>TrayMenu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{ca7e104d-5c3a-410f-a589-a11ebe4fe90d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resources">
+      <UniqueIdentifier>{ee8227ae-b1d1-404c-87a5-78fac0cf246c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Fonts">
+      <UniqueIdentifier>{cce72c47-d663-4a84-87ac-dacd9a19d4d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\imgui">
+      <UniqueIdentifier>{d06a7ed0-8e66-409e-b3cb-96acb087c7fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\background">
+      <UniqueIdentifier>{d0197d90-8042-449d-a843-224b20002cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Network">
+      <UniqueIdentifier>{b6aab8d1-4308-48ef-b10b-f4a573c33ced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Network\CFileDownloader">
+      <UniqueIdentifier>{4dd25a93-31ec-4414-91e0-0c765fa2464d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Network\json">
+      <UniqueIdentifier>{e31eaf28-6cde-44ff-895a-8946710b8b8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\audiolib">
+      <UniqueIdentifier>{f36a3218-cb71-4b6f-9fab-ca6b6d94be70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{5a1adb96-09a0-4fed-ae98-15bb3a6e3146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Settings">
+      <UniqueIdentifier>{58c640ba-ea71-4585-9e46-d9eaa334454b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="commands">
+      <UniqueIdentifier>{2a1f13b3-7c26-4321-b6c5-38cf2d38a853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{1dcb0638-eb07-4aa8-ae78-6725b6a486c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="template">
+      <UniqueIdentifier>{7aa432a4-487d-4830-9121-303ef52c1327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\console">
+      <UniqueIdentifier>{1798f4a7-7614-428d-93c5-46b4def111b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lists">
+      <UniqueIdentifier>{e881263e-0eaa-4e0e-b5f1-c885c0dba5ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Funcs">
+      <UniqueIdentifier>{2abbe134-2541-47b0-b213-9970fc258bcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\System">
+      <UniqueIdentifier>{bcd2f34d-1777-464e-8a8f-8f0ab9338ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\FileSystemManager">
+      <UniqueIdentifier>{f26cfdce-a8ae-446e-a12b-8116067937ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GUI">
+      <UniqueIdentifier>{d8102324-86c3-4710-8ea7-eb2647af8b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Misc">
+      <UniqueIdentifier>{bd734275-d8b4-48dc-a4e5-edc6d3ac6840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scanner">
+      <UniqueIdentifier>{f7c3cbdb-5c89-4581-ba0a-97dc478806ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Updater">
+      <UniqueIdentifier>{ad5d5dff-d995-44d4-96bf-7c3bb8b25f1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZipExtractor">
+      <UniqueIdentifier>{48c015da-6d33-4637-a04f-ed5bd6107f26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThreadWrapper">
+      <UniqueIdentifier>{e335e1e7-e5b1-4696-808c-ef2d65d6bf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TaskManager">
+      <UniqueIdentifier>{59dd4f31-2a4f-44a0-be25-7831dda50cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileList_Editor">
+      <UniqueIdentifier>{400cb941-eb58-495c-ab9f-e73cd507c326}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ExceptionHandler">
+      <UniqueIdentifier>{b71727de-95e6-43d6-a057-64cd297e7f21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZipPacker">
+      <UniqueIdentifier>{9a17c805-0f3d-496f-8abd-1de8de68c38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrayMenu">
+      <UniqueIdentifier>{28f12d6d-1053-428e-be86-21878c521a27}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Engine\Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico">
+      <Filter>Engine\Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\AnomalyPZ\AnomalyLauncher\7za.exe">
+      <Filter>Engine\Resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>
