@@ -44,18 +44,23 @@ long __stdcall WindowProcess(
 	}return 0;	
 
 
-	//case WM_SHOWWINDOW: {
-	//	if (wideParameter == TRUE) {			
-	//		// ”станавливаем фокус на ImGui
-	//		//SetFocus(window);
-	//		SetForegroundWindow(window);
-	//	}
-	//} return 0;	
+/*	case WM_SHOWWINDOW: {
+		if (wideParameter == TRUE) {			
+			// ”станавливаем фокус на ImGui
+			SetFocus(window);
+			SetForegroundWindow(window);
+		}
+	} return 0;	*/
 
-//	case WM_SETFOCUS:
-//        ShowWindow(Window, SW_SHOW);
-//        break;*/
-//  
+/*	case WM_SETFOCUS:
+        //ShowWindow(window, SW_SHOW);
+		if (g_tray.IsWindowVisible())
+		{
+			//SetForegroundWindow(window);
+			SetFocus(window);
+		}
+        break;*/
+  
 
 	case WM_TRAYICON:                              // +++ ƒќЅј¬»“№ +++
 		return g_tray.HandleTrayMessage(wideParameter, longParameter);
@@ -66,14 +71,14 @@ long __stdcall WindowProcess(
 		SetFocus(window);             // ”станавливаем фокус на окно
         break;*/
 
-/*	case WM_KILLFOCUS:
+	case WM_KILLFOCUS:
 		// +++ »«ћ≈Ќ»“№: не перехватывать фокус, когда UI скрыт в трей +++
 		if (g_tray.IsWindowVisible())
 		{
 			SetForegroundWindow(window);
 			SetFocus(window);
 		}
-		break;*/
+		break;
 
 	}	
 

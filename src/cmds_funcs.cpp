@@ -209,14 +209,6 @@ void runDiagnostics() {
         return fIsRunAsAdmin;
         }();
 
-    bool inVirtualStore = []() -> bool {
-        char path[MAX_PATH];
-        if (GetModuleFileNameA(nullptr, path, MAX_PATH)) {
-            std::string exePath(path);
-            return exePath.find("VirtualStore") != std::string::npos;
-        }
-        return false;
-        }();
 
     bool canWrite = []() -> bool {
         const std::string dir = "temp";
@@ -376,26 +368,22 @@ void runDiagnostics() {
 
     // === Вывод отчёта — дважды: в Log и в sn->con.AddLog ===
     logBoth("=== ДИАГНОСТИКА СИСТЕМЫ ===");
-    logBoth("Запущен от админа: %s", isAdmin ? "Да" : "Нет");
-    logBoth("В VirtualStore: %s", inVirtualStore ? "Да (ПРОБЛЕМА)" : "Нет");
-    logBoth("Доступ к temp(Файловая система): %s", canWrite ? "ОК" : "ЗАПРЕЩЁН");
+    logBoth("Права запуска: %s", isAdmin ? "Администратор" : "Пользователь");
+    logBoth("Доступ к файловой системе: %s", canWrite ? "Разрешён" : "Запрещён");
     logBoth("Висячие .part: %d шт.(Каталог с лаунчером)", staleNearlauncherFiles);
     logBoth("Висячие .part: %d шт.(Каталог с конфигурацией)", staleConfigFiles);
-    logBoth("DNS: %s", dnsOk ? "Разрешён" : "Не разрешён");
+    logBoth("Доступ к DNS: %s", dnsOk ? "Разрешён" : "Запрещён");
     logBoth("Сервер доступен: %s", serverOk ? "Да" : "Нет");
-    logBoth("HTTP статус: %ld", httpCode ? httpCode : -1L);
+    logBoth("HTTP статус(Сервер): %ld", httpCode ? httpCode : -1L);
     logBoth("Путь к лаунчеру: %s", exePath);
-    logBoth("Папка temp: temp");
-    logBoth("========================");
+    logBoth("========================"); 
 
-    if (inVirtualStore) {
-        logBoth(" Переместите лаунчер в папку без контроля UAC (например, D:\\Launcher)");
-    }
+    
     if (!canWrite) {
         logBoth(" Проверьте права на папку temp или отключите антивирус на время");
     }
     if (!dnsOk) {
-        logBoth(" Проверьте интернет или смените DNS (например, на 1.1.1.1)");
+        logBoth(" Проверьте интернет или смените ip-адрес");
     }
     if (dnsOk && !serverOk) {
         logBoth(" Сервер недоступен. Возможна блокировка провайдером или фаерволом");
@@ -411,7 +399,7 @@ void runDiagnostics() {
         logBoth(" Обнаружены висячие *.part файлы загрузчика в каталоге лаунчера. Очищено автоматически!");
     }
 
-    if (staleConfigFiles == 0)
+    /*if (staleConfigFiles == 0)
     {
         logBoth(" Висячие *.part файлы загрузчика в каталоге конфигурации не обнаружены. Очистка отменена!");
     }
@@ -419,9 +407,9 @@ void runDiagnostics() {
     if (staleNearlauncherFiles == 0)
     {
         logBoth(" Висячие *.part файлы загрузчика в каталоге лаунчера не обнаружены. Очистка отменена!");
-    }
+    }*/
 
-    logBoth(" Диагностика завершена.");
+    logBoth("=== ДИАГНОСТИКА ЗАВЕРШЕНА ===");
 }
 
 

@@ -6,7 +6,7 @@
 #define UPDATE_MODPACK_CHANGELIST_URL "https://raw.githubusercontent.com/0x5CE3C/AnomalyLauncher/refs/heads/updater/modpack_changelist_update.ini"
 #define MODPACK_UPDATE_CHANGELIST_FILE "modpack_changelist_update.ini"
 
-void checklauncherupdate();
+void checklauncherupdate(); 
 bool unlockedlauncherupdate(bool unlock = false);
 
 void checkmodpacklatestchangelist();

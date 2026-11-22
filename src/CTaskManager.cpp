@@ -111,8 +111,8 @@ void TaskExecutor::TasksUpdateSync() {
             // Перемещаем задачу (move гарантирует отсутствие лишних копий)
             currentTasks.push_back(std::move(prepareTasks.front()));
             prepareTasks.erase(prepareTasks.begin());
-
-            sn->con.AddLog("[Менеджер задач]: Задача ID %i перемещена в ожидающие задачи.", currentTasks.back().id);
+            //sn->con.AddLog("[Менеджер задач]: Нет активных задач, запуск из очереди подготовки.");
+            //sn->con.AddLog("[Менеджер задач]: Задача ID %i перемещена в Ожидающие задачи.", currentTasks.back().id);
             //currentTasks.back().status = TaskStatus::RUNNING;
         }
 
@@ -156,25 +156,22 @@ void TaskExecutor::ProcessTask(Task& currentTask) {
                 AddFileDownload(currentTask); // Метод для загрузки файла
                 break;
             case TaskType::UNPACK_ZIP:
-                Log(u8"Executing task ID: %i  TASK_TYPE_UNPACK_ZIP", currentTask.id);
                 UnpackZipFiles(currentTask); // Метод для распаковки ZIP
                 break;
             case TaskType::FILE_OPERATION:
                 PerformFileOperation(currentTask); // Метод для операций с файлами
                 break;
             case TaskType::DOWNLOAD_PATCHES:
-                Log(u8"Executing task ID: %i  TASK_TYPE_DOWNLOAD_PATCHES", currentTask.id);
                 DownloadPatches(currentTask); // Метод для загрузки патчей
                 break;
             case TaskType::INSTALL_PATCHES:
-                Log(u8"Executing task ID: %i  TASK_TYPE_INSTALL_PATCHES", currentTask.id);
                 InstallPatches(currentTask); // Метод для установки патчей
                 break;
             case TaskType::FILE_UPDATE:
                 UpdateFile(currentTask); // Метод для обновления файла
                 break;
             case TaskType::HASH_CHECK_MODS:
-                AddHashCheckTask(currentTask);
+                AddHashCheckTask(currentTask); // Метод для сравнения хешей Модов
                 break;
             case TaskType::SCANNING:
                 ScanningTask(currentTask);
@@ -185,14 +182,13 @@ void TaskExecutor::ProcessTask(Task& currentTask) {
             case TaskType::SCANNING_AND_BACKUP_EXTERNAL_MODS:
                 ScanningAndBackupExternalMods(currentTask);
                 break;
-            case TaskType::SCANNING_RESTORE_ALL:
-                Log(u8"Executing task ID: %i TASK_TYPE_SCANNING_RESTORE_ALL", currentTask.id);
+            case TaskType::SCANNING_RESTORE_ALL:                
                 ScanningAndRestoreAllModules(currentTask);
                 break;
-            case TaskType::SCANNING_RESTORE_COMPLETED:
+            //case TaskType::SCANNING_RESTORE_COMPLETED:
                 //Log(u8"Executing task ID: %i TASK_TYPE_SCANNING_RESTORE_ALL", currentTask.id);
-                ScanningAndRestoreAllModules(currentTask);
-                break;
+                //ScanningAndRestoreAllModules(currentTask);
+                //break;
             case TaskType::PACK_ANOMALY_ZIP:
                 //Log(u8"Executing task ID: %i TASK_TYPE_SCANNING_RESTORE_ALL", currentTask.id);    
                 AddAnomalyPackTask(currentTask);
@@ -208,7 +204,7 @@ void TaskExecutor::ProcessTask(Task& currentTask) {
 
 
             default:
-                Log("Неизвестный тип задачи с ID: %i | Отмена задачи", currentTask.id);
+                Log("[Менеджер задач]: Неизвестный тип задачи с ID: %i | Отмена задачи", currentTask.id);
                 currentTask.status = TaskStatus::CANCELED; // Устанавливаем статус CANCELED для неизвестной задачи
                 return; // Выходим, не обновляя статус на COMPLETED
             }

@@ -92,7 +92,7 @@ void Menu_render_lists()
 	if (sn->umode.universal_mode.enabled)
 	{		
 		ImGui::PushItemWidth(gui::size.x / 2);
-		ImGui::InputTextWithHint(u8"Имя профиля сборки", u8"введите название", &sn->umode.modpack_name);
+		ImGui::InputTextWithHint(u8"Имя профиля сборки в Mod Organizer 2", u8"введите название", &sn->umode.modpack_name);
 		ImGui::PopItemWidth();
 
 		ImGui::PushItemWidth(gui::size.x / 2);

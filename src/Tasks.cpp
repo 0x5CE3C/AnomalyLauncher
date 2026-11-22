@@ -2,25 +2,40 @@
 
 void TaskExecutor::AddFileDownload(Task& currentTask) {
     if (currentTask.status == TaskStatus::RUNNING) {
+        
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Скачивание.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Скачивание.", currentTask.id);
+        
         currentTask.progress = 0.0f;
-        currentTask.func();
-        sn->con.AddLog("[TaskExecutor]: Executing task ID: %i TASK_TYPE_FILE_DOWNLOAD", currentTask.id);
+        progress_ = 0.0f; // Обязательно сбрасываем ДО запуска, чтобы не поймать 100% от прошлой задачи!
+        isDownloadWorkerDone = false;
+        downloadFinishedOk = false;
+        lastReportedProgress = -1.0;
 
         auto httpc = HttpClient::getInstance();
 
-        while (currentTask.progress <= 100.0f) {
-            sleep(100);
-            currentTask.progress = progress_; // Увеличиваем прогресс
-            //sn->con.AddLog("Download Progress: %0.1f%% | %d", currentTask.progress, isDownloading);           
+        // Привязываем текущую задачу, чтобы progress_callback обновлял её напрямую
+        g_activeDownloadTask = &currentTask;
 
-            if (currentTask.progress == 100.0f && !httpc->IsDownloading())
-            {
-                currentTask.status = TaskStatus::COMPLETED;
-                //currentTask.progress = 0.0f;
-                //sn->con.AddLog("[TaskExecutor]: Задача с ID %i завершена", currentTasks.front().id);                     
-                //currentTasks.erase(currentTasks.begin()); // Удаляем после обработки          
-                break;
-            }
+        currentTask.func();        
+       
+        // Отвязываем задачу сразу после завершения
+        g_activeDownloadTask = nullptr;
+        
+
+        // Крутимся, пока фоновый поток не завершится (успешно или с ошибкой)
+        while (!isDownloadWorkerDone) {
+            sleep(100);
+            currentTask.progress = progress_; // Обновляем прогресс для UI в реальном времени
+        }
+
+        // Поток гарантированно завершён — ставим финальный статус
+        if (downloadFinishedOk && !httpc->IsDownloading()) {
+            currentTask.progress = 100.0f;
+            currentTask.status = TaskStatus::COMPLETED;
+        }
+        else {
+            currentTask.status = TaskStatus::CANCELED; // При пустой ссылке или ошибке задача корректно закрывается
         }
     }
 }
@@ -42,7 +57,8 @@ void TaskExecutor::UpdateFile(Task& currentTask) {
 
 void TaskExecutor::UnpackZipFiles(Task& currentTask) {
     if (currentTask.status == TaskStatus::RUNNING) {
-        Log("Распаковка ZIP файлов для задачи ID: %i", currentTask.id);
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Распаковка.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Распаковка.", currentTask.id);
         currentTask.func();
         if (zip_extracted == 0 && unpacked_status == 0)
         {
@@ -208,7 +224,8 @@ void Debug_CheckAndBackupExternalMods(float* outProgress = nullptr) {
 void TaskExecutor::AddHashCheckTask(Task& currentTask) {
     if (currentTask.status == TaskStatus::RUNNING) {
         currentTask.progress = 0.0f;
-        sn->con.AddLog("[TaskExecutor]: Executing task ID: %i TASK_TYPE_HASH_CHECK_MODS", currentTask.id);
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Сравнение хешей.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Сравнение хешей.", currentTask.id);
 
         auto thw = ThreadWrapper::create();
         thw->beginAsync([this, &currentTask]() {
@@ -235,7 +252,9 @@ void TaskExecutor::ScanningAndBackupExternalMods(Task& currentTask) {
 void TaskExecutor::ScanningTask(Task& currentTask) {
     if (currentTask.status == TaskStatus::RUNNING) {
         currentTask.progress = 0.0f;
-        sn->con.AddLog("[TaskExecutor]: Запуск задачи сканирования — последовательная проверка модулей");
+
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Сканирование.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Сканирование.", currentTask.id);
 
         const int modules[4] = {
             SCAN_MODULE_TYPE_EXTRACTOR,
@@ -298,7 +317,7 @@ void TaskExecutor::ScanningTask(Task& currentTask) {
             currentTask.progress = 1.0f;
             currentTask.status = TaskStatus::COMPLETED;
 
-            sn->con.AddLog("[TaskExecutor]: Все модули проверены — сканирование завершено");
+            sn->con.AddLog("[Менеджер задач]: Все модули проверены — сканирование завершено");
             //executor->AddTask([]() {}, TaskType::HASH_CHECK_MODS);
 
             //if(module_anomaly_damaged == false && module_mo2_damaged == false && //module_be_damaged == false)
@@ -316,7 +335,8 @@ void TaskExecutor::ScanningTask(Task& currentTask) {
 void TaskExecutor::UpdateVersionTask(Task& currentTask) {
     if (currentTask.status == TaskStatus::RUNNING) {
         currentTask.progress = 0.0f;
-        sn->con.AddLog("[TaskExecutor]: Executing task ID: %i TASK_TYPE_UPDATE_VERSION", currentTask.id);
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Обновление версии.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Обновление версии.", currentTask.id);
 
 
         const int modules[4] = {
@@ -411,7 +431,9 @@ void TaskExecutor::ScanningAndRestoreAllModules(Task& currentTask) {
     if (currentTask.status == TaskStatus::RUNNING) {
         cancellationRequested = false; // Сбрасываем флаг при запуске
         currentTask.progress = 0.0f;
-        sn->con.AddLog("[Менеджер задач]: Запуск задачи сканирования — последовательная проверка и восстановление ВСЕХ модулей");
+
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Восстановление модулей.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Восстановление модулей.", currentTask.id);
 
         const int modules[4] = {
             SCAN_MODULE_TYPE_EXTRACTOR,
@@ -512,8 +534,8 @@ void TaskExecutor::ScanningAndRestoreAllModules(Task& currentTask) {
 
                     modpack_up_unlocked = 0;
 
-                    sn->con.AddLog("{AAFFFF}Восстановление завершено.");
-                    Log("[Восстановление] > Восстановление завершено");
+                    //sn->con.AddLog("{AAFFFF}Восстановление завершено.");
+                    //Log("[Восстановление] > Восстановление завершено");
 
                 }
             }
@@ -608,7 +630,8 @@ void TaskExecutor::AddAnomalyPackTask(Task& currentTask) {
     currentTask.progress = 0.0f;
     currentTask.status = TaskStatus::RUNNING;
 
-    sn->con.AddLog("[TaskExecutor]: Starting Anomaly pack task ID: %i", currentTask.id);
+    Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Запаковка Anomaly.", currentTask.id);
+    sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Запаковка Anomaly.", currentTask.id);
 
     auto thw = ThreadWrapper::create();
     thw->beginAsync([this, &currentTask]() {
@@ -616,8 +639,7 @@ void TaskExecutor::AddAnomalyPackTask(Task& currentTask) {
         currentTask.status = TaskStatus::COMPLETED;
         // Если задача была отменена, статус останется RUNNING или ты можешь ставить CANCELLED
         // в самой функции-обработчике, если хочешь более точную логику.
-        });
-    // thw->detachAll(); // как у тебя
+        });    
     }
 }
 
@@ -627,7 +649,8 @@ void TaskExecutor::AddMo2ModsPackTask(Task& currentTask) {
         currentTask.progress = 0.0f;
         currentTask.status = TaskStatus::RUNNING;
 
-        sn->con.AddLog("[TaskExecutor]: Starting MO2 Mods pack task ID: %i", currentTask.id);
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Запаковка Модов.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Запаковка Модов.", currentTask.id);
 
         //auto thw = ThreadWrapper::create();
         //thw->beginAsync(
@@ -645,7 +668,8 @@ void TaskExecutor::AddMo2TopPackTask(Task& currentTask) {
         currentTask.progress = 0.0f;
         currentTask.status = TaskStatus::RUNNING;
 
-        sn->con.AddLog("[TaskExecutor]: Starting MO2 Top pack task ID: %i", currentTask.id);
+        Log("[Менеджер задач]: Выполнение задачи: id %i, Тип: Запаковка MO2.", currentTask.id);
+        sn->con.AddLog("[Менеджер задач]: Выполнение задачи: id %i, Тип: Запаковка MO2.", currentTask.id);
 
         //auto thw = ThreadWrapper::create();
         //thw->beginAsync(

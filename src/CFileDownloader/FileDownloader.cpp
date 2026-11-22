@@ -1,11 +1,15 @@
 #include "main.h"
 #include "FileDownloader.h"
 
+
 using namespace std;
 
 namespace fs = std::filesystem;
 
 double progress_ = 0.0f;
+double lastReportedProgress = -1.0;
+std::atomic<Task*> g_activeDownloadTask{ nullptr };
+
 string download_info = "N\\A";
 
 
@@ -18,7 +22,14 @@ void progress_callback(void* userdata, double download_speed, double remaining_t
     curl_off_t dltotal, curl_off_t dlnow)
 {
     // Статическое состояние именно для этой функции: последний отправленный прогресс
-    static double lastReportedProgress = -1.0;
+    //static double lastReportedProgress = -1.0;
+
+    // Сразу обновляем прогресс задачи для UI без задержек!
+    progress_ = progress_percentage;
+    if (Task* activeTask = g_activeDownloadTask.load()) {
+        activeTask->progress = static_cast<float>(progress_percentage);
+    }
+
 
     // Порог для обновления (чтобы не спамить каждые 0.01%)
     const double progressThreshold = 0.5;
@@ -191,8 +202,18 @@ string GetFileNamebyServer(string input_url)
     return filename;
 }
 
+/*// Глобальный или член класса флаг результата последней загрузки
+std::atomic<bool> isDownloadWorkerDone{ false };
+std::atomic<bool> downloadFinishedOk{ false };*/
+
 void StartDownloading()
 {
+    // Гарантируем, что при ЛЮБОМ return (пустая ссылка, ошибка имени, конец загрузки)
+    // флаг isDownloadWorkerDone станет true, и цикл в AddFileDownload не зависнет!
+    struct DoneGuard {
+        ~DoneGuard() { isDownloadWorkerDone = true; }
+    } guard;
+
     if (link.empty()) {
         sn->con.AddLog("[FileDownloader]Ошибка: Пустая ссылка для загрузки");
         Log("[FileDownloader]Ошибка: Пустая ссылка для загрузки");
@@ -250,24 +271,48 @@ void StartDownloading()
         //Log("[Server]Имя файла: %s", fname.c_str());        
     }            
        
-
-    HttpClient::getInstance()->HttpGet(url, fname, NULL, progress_callback);
+    //Поддержка github внутри
+    //HttpClient::getInstance()->HttpGet(url, fname, NULL, progress_callback);
+    // 
+    // HttpGet сам дождётся окончания загрузки и вернёт CURLE_OK при успехе
+    int res = HttpClient::getInstance()->HttpGet(url, fname, NULL, progress_callback);
+    downloadFinishedOk = (res == CURLE_OK);
 }
 
-void* filedownload(string url, string staticfilename)
+void filedownload(string url, string staticfilename)
 {
+    isDownloadWorkerDone = false;
+    downloadFinishedOk = false;
+
+    //Создает тупик еюаный в Менеджере задач
+/*    if (url.empty()) {
+        sn->con.AddLog("Error: Empty download link");
+        Log("Error: Empty download link");
+
+        return;// nullptr;
+    }*/
+
+    // Сначала останавливаем скачивание
+/*auto httpClient = HttpClient::getInstance();
+if (httpClient) {
+    httpClient->stopDownload();
+}*/
+
     if (url.empty()) {
         sn->con.AddLog("Error: Empty download link");
         Log("Error: Empty download link");
-        return nullptr;
+        isDownloadWorkerDone = true; // Сразу сигнализируем, что поток не запускался и работа окончена
+        return;
     }
 
     link = url;
     sfname = staticfilename;
 
-    auto thw = ThreadWrapper::create();
+    StartDownloading();
+
+    /*auto thw = ThreadWrapper::create();
     thw->beginAsync(StartDownloading);
-    thw->detachAll();
+    thw->detachAll();*/
 }
 
 string GetConvertedLinkbyYandex(string input_url)

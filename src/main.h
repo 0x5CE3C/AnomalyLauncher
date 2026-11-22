@@ -9,7 +9,7 @@
 #include "mainincludes.h"
 
 #define PROJECT_FOLDER "AnomalyLauncher"
-#define LVER "0.1.6.5 final"
+#define LVER "0.1.6.6"
 #define AUTHOR " | ver -> "
 #define PROJECT_NAME "AnomalyLauncher Extended" AUTHOR LVER
 #define LOG_FILE "AnomalyLauncher.log"

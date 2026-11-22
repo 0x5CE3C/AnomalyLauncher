@@ -74,7 +74,7 @@ int Save()
 
 	   ini.GetSection("modpack")->SetValue("umode.universal_mode_enabled", sn->umode.universal_mode.enabled);
 	   string mpname_cp1251 = utf8_to_cp1251(sn->umode.modpack_name);
-	   ini.GetSection("modpack")->SetValue("umode.modpack_name", mpname_cp1251, "название вашей сборки");
+	   ini.GetSection("modpack")->SetValue("umode.modpack_name", mpname_cp1251, "название профиля вашей сборки в Mod Organizer 2");
 	   ini.GetSection("modpack")->SetValue("umode.filelist_url", sn->umode.filelist_url, "ссылка на список файлов");
 	   ini.GetSection("modpack")->SetValue("umode.lastupdates_url", sn->umode.lastupdates_url, "ссылка на список последних изменений");
 	   ini.GetSection("modpack")->SetValue("disable_update_modpack_button_enabled", sn->disable_update_modpack_button.enabled, "Отключение кнопки \"Обновить сборку\"");

@@ -13,6 +13,10 @@
 #include <vector>
 #include <mutex>
 
+// экстренный выход для задач загрузки
+inline std::atomic<bool> isDownloadWorkerDone{ false };
+inline std::atomic<bool> downloadFinishedOk{ false };
+
 // Перечисление статусов задач
 enum class TaskStatus {
     PREPARING,   // Ожидает выполнения

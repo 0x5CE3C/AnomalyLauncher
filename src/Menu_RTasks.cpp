@@ -81,7 +81,18 @@ void TaskExecutor::RenderTaskTab() {
     for (const Task& task : tasks) {
         ImGui::Text("%d", task.id);
         ImGui::NextColumn();
-        ImGui::Text(u8"%s", (task.type == TaskType::FILE_DOWNLOAD ? u8"Скачивание" : task.type == TaskType::UNPACK_ZIP ? u8"Распаковка" : task.type == TaskType::PACK_MO2_ZIP ? u8"Запаковка MO2" : task.type == TaskType::PACK_ANOMALY_ZIP ? u8"Запаковка Anomaly" : task.type == TaskType::PACK_MODS_ZIP ? u8"Запаковка Модов" : task.type == TaskType::HASH_CHECK_MODS ? u8"Сравнение хешей" : task.type == TaskType::UPDATE_VERSION ? u8"Обновление версии" : task.type == TaskType::SCANNING ? u8"Сканирование" : task.type == TaskType::SCANNING_RESTORE_ALL ? u8"Восстановление модулей" : task.type == TaskType::SCANNING_RESTORE_COMPLETED ? u8"Завершение восстановления" : task.type == TaskType::FILE_UPDATE ? u8"Обновление файла" : u8"unknown")); // Приводим тип к int для отображения
+        ImGui::Text(u8"%s", (
+            task.type == TaskType::FILE_DOWNLOAD ? u8"Скачивание" :
+            task.type == TaskType::UNPACK_ZIP ? u8"Распаковка" : 
+            task.type == TaskType::PACK_MO2_ZIP ? u8"Запаковка MO2" : 
+            task.type == TaskType::PACK_ANOMALY_ZIP ? u8"Запаковка Anomaly" : 
+            task.type == TaskType::PACK_MODS_ZIP ? u8"Запаковка Модов" : 
+            task.type == TaskType::HASH_CHECK_MODS ? u8"Сравнение хешей" : 
+            task.type == TaskType::UPDATE_VERSION ? u8"Обновление версии" : 
+            task.type == TaskType::SCANNING ? u8"Сканирование" : 
+            task.type == TaskType::SCANNING_RESTORE_ALL ? u8"Восстановление модулей" : 
+            task.type == TaskType::SCANNING_RESTORE_COMPLETED ? u8"Завершение восстановления" : 
+            task.type == TaskType::FILE_UPDATE ? u8"Обновление файла" : u8"unknown")); // Приводим тип к int для отображения
         ImGui::NextColumn();
 
         ImGui::Text(u8"%s", (task.status == TaskStatus::RUNNING ? u8"Выполняется" :
